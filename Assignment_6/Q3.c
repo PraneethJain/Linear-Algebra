@@ -9,37 +9,70 @@
 #include <stdbool.h>
 #include <math.h>
 
-#define MATRIX_SIZE 2
+#define MATRIX_SIZE 3
 #define MAX_ITERATIONS 100
 #define EPSILON 1e-6
 
-void matrix_vector_multiply(int matrix[MATRIX_SIZE][MATRIX_SIZE], int vector[MATRIX_SIZE], int result[MATRIX_SIZE]) 
+void matrix_vector_multiply(double matrix[MATRIX_SIZE][MATRIX_SIZE], double vector[MATRIX_SIZE], double result[MATRIX_SIZE])
 {
- // Implementation of matrix_vector_multiply function...
+  for (int res_idx = 0; res_idx < MATRIX_SIZE; ++res_idx)
+  {
+    double res = 0;
+    for (int i = 0; i < MATRIX_SIZE; ++i)
+      res += matrix[res_idx][i] * vector[i];
+    result[res_idx] = res;
+  }
 }
 
-void normalize_vector(int vector[MATRIX_SIZE]) 
+void normalize_vector(double vector[MATRIX_SIZE])
 {
- // Implementation of normalize_vector function...
+  double sum = 0;
+  for (int i = 0; i < MATRIX_SIZE; ++i)
+    sum += pow(vector[i], 2);
+  double magnitude = sqrt(sum);
+  for (int i = 0; i < MATRIX_SIZE; ++i)
+    vector[i] /= magnitude;
 }
 
-bool is_eigenvector(int matrix[MATRIX_SIZE][MATRIX_SIZE], int vector[MATRIX_SIZE]) 
+bool is_eigenvector(double matrix[MATRIX_SIZE][MATRIX_SIZE], double vector[MATRIX_SIZE])
 {
- // Implementation of is_eigenvector function...
- 
+  double product[MATRIX_SIZE];
+  matrix_vector_multiply(matrix, vector, product);
+  normalize_vector(product);
+  normalize_vector(vector);
+  bool parallel = true;
+  for (int i = 0; i < MATRIX_SIZE; ++i)
+  {
+    if (abs(vector[i] - product[i]) > EPSILON)
+    {
+      parallel = false;
+      break;
+    }
+  }
+
+  bool antiparallel = true;
+  for (int i = 0; i < MATRIX_SIZE; ++i)
+  {
+    if (abs(vector[i] + product[i]) > EPSILON)
+    {
+      antiparallel = false;
+      break;
+    }
+  }
+  
+  return parallel || antiparallel;
 }
 
-int main() 
+int main()
 {
-  int matrix[MATRIX_SIZE][MATRIX_SIZE];
-  int vector[MATRIX_SIZE];
+  double matrix[MATRIX_SIZE][MATRIX_SIZE];
+  double vector[MATRIX_SIZE];
 
-
-  if (is_eigenvector(matrix, vector)) 
+  if (is_eigenvector(matrix, vector))
     printf("The vector is an eigenvector for the matrix.\n");
-  else 
+  else
     printf("The vector is not an eigenvector for the matrix.\n");
   printf("\n");
 
- return 0;
+  return 0;
 }
