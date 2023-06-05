@@ -23,10 +23,22 @@ otherwise go for Column Expansion.
 int **create_matrix(int size)
 {
   int **m = (int **)malloc(sizeof(int *)*size);
-  for (int i = 0; i < MATRIX_SIZE; ++i)
+  for (int i = 0; i < size; ++i)
     m[i] = (int *)malloc(sizeof(int)*size);
 
   return m;
+}
+
+void print_matrix(int **matrix, int size)
+{
+  for (int i = 0; i < size; ++i)
+  {
+    for (int j = 0; j < size; ++j)
+    {
+      printf("%i ", matrix[i][j]);
+    }
+    printf("\n");
+  }
 }
 
 void get_cofactor(int **matrix, int **cofactor, int p, int q, int size)
