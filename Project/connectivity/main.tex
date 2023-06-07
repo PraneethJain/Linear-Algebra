@@ -62,7 +62,7 @@
     \section{Connectivity}
     We will analyse the connectivity of a graph using its adjacency matrix and its eigenvalues.
 
-    \subsection{Connected Components}
+    \subsection{Connected Components \cite{baeldung}}
     \begin{flushleft}
     Consider a regular undirected graph $G$ (each vertex having degree $d$), and some eigenvector $x$ of $A(G)$ with its corresponding eigenvalue $\lambda$
 
@@ -72,12 +72,12 @@
     $$ |\lambda||x_i| \le d|x_i| \qquad (Since \quad |x_j| \le |x_i| \forall j)$$
     $$|\lambda| \le d$$
 
-    All the eigenvalues of this graph are smaller than or equal to $d$.
+    All the eigenvalues of this graph are smaller than or equal to $d$. \cite{bhaskara4}
 
     Upon setting all $x_i$ to 1, we get $Ax = dx$, which gives
     $$\lambda_{max} = d$$
 
-  The multiplicity of the maximum eigenvalue (equal to $d$) gives the number of connected components of $G$. The number of connected components of a graph have various applications in different fields
+      The multiplicity of the maximum eigenvalue (equal to $d$) gives the number of connected components of $G$. \cite{bhaskara5} The number of connected components of a graph have various applications in different fields
 
       \begin{itemize}
         \item Social Network Analysis: Connected components are used to identify a set of individuals as a community. By finding these components, insights on information flow and social interactions are studied by researchers.
@@ -87,7 +87,7 @@
       \end{itemize}
     \end{flushleft}
 
-    \subsection{Number of paths in a graph}
+    \subsection{Number of paths in a graph \cite{mitpaths}}
     \begin{flushleft}
     Consider an undirected graph $G$ with adjacency matrix $A(G)$. Let $\lambda_1,\lambda_2,\lambda_3,...,\lambda_n$ be the eigenvalues of $A(G)$
       $$\forall i,j \quad \exists c_1,c_2,c_3,...,c_n \quad (A(G)^k)_{ij} = c_1\lambda_1^k + c_2\lambda_2^k + c_3\lambda_3^k + ... + c_n\lambda_n^k \quad \forall k \ge 1$$
@@ -105,4 +105,17 @@
         \item Disease Spread: While modelling the spread of a disease, individuals and locations act as vertices in the graph, and the number of paths quantify how likely it is that the disease spread to the other end of that path. This informs us regarding control strategies and which locations require quarantine measures the most.
       \end{itemize}
     \end{flushleft} 
+
+    \begin{thebibliography}{9}
+    \bibitem{baeldung}
+    Science, B. O. C., Science, B. O. C. (2022). Connected Components in a Graph | Baeldung on Computer Science. Baeldung on Computer Science. https://www.baeldung.com/cs/graph-connected-components
+    \bibitem{bhaskara4}
+    Aditya Bhaskara, CS Utah (2016). Graph Partitioning, basic linear algebra https://users.cs.utah.edu/~bhaskara/courses/x968/notes/lec4.pdf
+    \bibitem{bhaskara5}
+    Aditya Bhaskara, CS Utah (2016). Eigenvalues of $A_G$ and the Laplacion https://users.cs.utah.edu/~bhaskara/courses/x968/notes/lec5.pdf
+
+    \bibitem{mitpaths}
+    Derek Chen, Advay Goel (2021). Spectral Graph Theory https://math.mit.edu/research/highschool/primes/materials/2021/December/Chen-Goel.pdf
+
+    \end{thebibliography}
 \end{document}
