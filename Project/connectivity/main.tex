@@ -133,11 +133,9 @@
     
     By calculating the extended connections of a node, Eigen Centrality can identify nodes with influence over the whole network, not just those directly connected to it.
 
-    % INSERT GRAPH
     \includegraphics[width=0.5\textwidth, center]{graph}
     
     The adjacency matrix A of the above graph will be as shown below:
-    % INSERT MATRIX A
     \begin{equation*}
     \begin{bmatrix}
     - & 1 & 1 & 1 & 0 \\
@@ -150,7 +148,6 @@
     \end{equation*}
     
     Let’s assume that in the above graph, the importance of each node is measured by its degree, such that the higher the degree of a node, the more important it is in the graph. Degrees of various nodes are shown below:
-    % INSERT TABLE
     
     \begin{table}
     \centering
@@ -168,7 +165,6 @@
     \end{table}
     
     The above can also be represented as a vector V as shown below:
-    % INSERT VECTOR
 
     \begin{equation*}
     \begin{bmatrix}
@@ -181,14 +177,12 @@
     \end{equation*}
 
     Mathematically the Eigen Vector Centrality is calculated as below:
-    % INSERT MULTIPLICATION 
 
     \includegraphics[width=0.9\textwidth,center]{Multiplication}
 
     The resultant 1-D vector in the above equation gives the Eigen Vector Centrality (EVC) score for each of the nodes in the graph.
 
     The effect of the first iteration of multiplication can be visualized as shown below:
-    % INSERT TRANSFORM
 
     \includegraphics[width=0.9\textwidth,center]{Transform}
 
