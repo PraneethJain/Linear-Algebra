@@ -79,67 +79,6 @@
 
     \section{Centrality Measures}
     Centrality measures use graph theory to calculate the importance of any given node in a network. Centrality has different types and each type or metric defines the “importance” of a node from different perspectives and further provides relevant analytical information about the graph and its nodes.\cite{Disney22}
-    \subsection{Degree Centrality}
-    \begin{flushleft}
-    
-    Degree centrality assigns an importance score based on the number of links held by each node.
-    
-   
-    Degree Centrality metric defines the importance of a node in a graph as being measured based on its degree i.e. the higher the degree of a node, the more important it is in a graph.
-    
-    Mathematically, Degree Centrality is defined as D(i) for a node “i” as below:
-
-    $$D\left(i\right)=\mathrm{\Sigma}_jm\left(i,j\right),$$ where $$m\left(i,j\right)\ =\ 1 $$ 
-    
-    if there is a link from node “i” to node “j”
-
-    This metric is used to find which node has the most connections or nodes which are likely to hold the most information.
-    \end{flushleft}
-    \subsection{Betweenness Centrality}
-
-    \begin{flushleft}
-    Betweenness Centrality defines and measures the importance of a node in a network based on how many times it occurs in the shortest path between all pairs of nodes in a graph.
-    
-    This measure shows which nodes are ‘bridges’ between nodes in a network. It does this by identifying all the shortest paths and then counting how many times each node falls on one. A high betweenness count could indicate someone holds authority over disparate clusters in a network, or just that they are on the periphery of both clusters.
-    
-    Mathematically, Betweenness Centrality B(i) of a node i in a graph is defined as below:
-
-    $$ B\left(i\right)=\mathrm{\Sigma}_{a,b}\frac{g_{aib}}{g_{ab}} $$
-
-    $a$, $b$ is any pair of nodes in the graph
-   
-    $g_{aib}$ is the number of shortest paths from node “a” to “b” passing through “i”
-    
-    $g_{ab}$ is the number of shortest paths from node “a” to “b”
-
-    A sample application of BC is to find bridge nodes in graphs. Nodes having high BC are the nodes that are on the shortest paths between a large number of pair of nodes and hence are crucial to the communication in a graph as they connect a high number of nodes with each other. Removing these nodes from the network would lead to a huge disruption in the linkage or communication of the network.
-
-    A real-life use case of the above application is in analysing global terrorism networks. For example, if we have a network of terrorists or terrorist groups and other related individuals represented as nodes of a graph, we can calculate BC for each node and identify nodes with high BCs. These nodes (or terrorists in this case) will be bridge nodes in the network. This information is very useful for defence agencies as it can be highly effective in disrupting the whole terrorism network. 
-    \end{flushleft}
-    \subsection{Closeness Centrality}
-
-    \begin{flushleft}
-    Closeness centrality scores each node based on their ‘closeness’ to all other nodes in the network. This measure calculates the shortest paths between all nodes and then assigns each node a score based on its sum of shortest paths.
-
-    For a node, Closeness Centrality is defined as the sum of the geodesic distance between that node to all other nodes in the network.
-    
-    The Geodesic distance d between two nodes a and b is defined as the number of edges/links between these two nodes on the shortest path(path with the minimum number of edges) between them.
-    
-    Mathematically, Geodesic distance can be defined as below:
-    
-    $d(a, b)$ = No. of edges between a and b on the shortest path from a to b, if a path exists from a to b
-    
-    $d(a, b)$ = 0 if a = b
-    
-    $d(a, b)$ = $\infty$ if no path exists from a to b
-
-    Mathematically, Closeness Centrality C(i) of a node i in a graph can be defined as below:
-
-    $$C\left(i\right)=\mathrm{\Sigma}_jd\left(i,j\right) $$
-
-    It is useful for finding the individuals who are best placed to influence the entire network most quickly.
-    
-    \end{flushleft}
     \subsection{Eigen Centrality}
     \begin{flushleft}
 
