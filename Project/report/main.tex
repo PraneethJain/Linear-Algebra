@@ -4,8 +4,10 @@
 \usepackage{amsmath}
 \graphicspath{{images/}}
 \usepackage{titling}
+\usepackage{subcaption}
 \renewcommand\maketitlehooka{\null\mbox{}\vfill}
 \renewcommand\maketitlehookd{\vfill\null}
+\hbadness=10000
 
 \title{Analysis of Adjacency Matrices by Spectral Graph Theory}
 \author{
@@ -30,8 +32,8 @@
 
     \section{Objective}
     The adjacency matrix provides a concise representation of the connections between nodes in a graph, while eigenvalues reveal important properties about
-the graph’s structure. Through analysis and computation of eigenvalues, this
-project aims to gain insights into the characteristics and behavior of graph networks, such as centrality measures, connectivity, and clustering.
+    the graph’s structure. Through analysis and computation of eigenvalues, this
+    project aims to gain insights into the characteristics and behavior of graph networks, such as centrality measures, connectivity, and clustering.
 
     \section{Introduction}
 
@@ -72,18 +74,20 @@ project aims to gain insights into the characteristics and behavior of graph net
         \end{itemize}
 
     \section{Centrality Measures}
+    Centrality measures use graph theory to calculate the importance of any given node in a network. Centrality has different types and each type or metric defines the “importance” of a node from different perspectives and further provides relevant analytical information about the graph and its nodes.\cite{Disney22}
     \subsection{Degree Centrality}
     \begin{flushleft}
     
     Degree centrality assigns an importance score based on the number of links held by each node.
     
-    In a non-directed graph, the degree of a node is defined as the number of direct connections a node has with other nodes. In a directed graph (each edge has a direction), the degree of a node is further divided into In-degree and Out-degree. In-degree refers to the number of edges/connections incident on it and Out-degree refers to the number of edges/connections from it to other nodes.
-    
+   
     Degree Centrality metric defines the importance of a node in a graph as being measured based on its degree i.e. the higher the degree of a node, the more important it is in a graph.
     
     Mathematically, Degree Centrality is defined as D(i) for a node “i” as below:
 
-    $D\left(i\right)=\mathrm{\Sigma}_jm\left(i,j\right),$ where $m\left(i,j\right)\ =\ 1 $ if there is a link from node “i” to node “j”
+    $$D\left(i\right)=\mathrm{\Sigma}_jm\left(i,j\right),$$ where $$m\left(i,j\right)\ =\ 1 $$ 
+    
+    if there is a link from node “i” to node “j”
 
     This metric is used to find which node has the most connections or nodes which are likely to hold the most information.
     \end{flushleft}
@@ -96,9 +100,9 @@ project aims to gain insights into the characteristics and behavior of graph net
     
     Mathematically, Betweenness Centrality B(i) of a node i in a graph is defined as below:
 
-    $ B\left(i\right)=\mathrm{\Sigma}_{a,b}\frac{g_{aib}}{g_{ab}} $
+    $$ B\left(i\right)=\mathrm{\Sigma}_{a,b}\frac{g_{aib}}{g_{ab}} $$
 
-    a, b is any pair of nodes in the graph
+    $a$, $b$ is any pair of nodes in the graph
    
     $g_{aib}$ is the number of shortest paths from node “a” to “b” passing through “i”
     
@@ -119,15 +123,15 @@ project aims to gain insights into the characteristics and behavior of graph net
     
     Mathematically, Geodesic distance can be defined as below:
     
-    \textbf{d(a, b)} = No. of edges between a and b on the shortest path from a to b, if a path exists from a to b
+    $d(a, b)$ = No. of edges between a and b on the shortest path from a to b, if a path exists from a to b
     
-    \textbf{d(a, b)} = 0 if a = b
+    $d(a, b)$ = 0 if a = b
     
-    \textbf{d(a, b)} = $\infty$ if no path exists from a to b
+    $d(a, b)$ = $\infty$ if no path exists from a to b
 
     Mathematically, Closeness Centrality C(i) of a node i in a graph can be defined as below:
 
-    $C\left(i\right)=\mathrm{\Sigma}_jd\left(i,j\right) $
+    $$C\left(i\right)=\mathrm{\Sigma}_jd\left(i,j\right) $$
 
     It is useful for finding the individuals who are best placed to influence the entire network most quickly.
     
@@ -157,7 +161,7 @@ project aims to gain insights into the characteristics and behavior of graph net
     
     Let’s assume that in the above graph, the importance of each node is measured by its degree, such that the higher the degree of a node, the more important it is in the graph. Degrees of various nodes are shown below:
     
-    \begin{table}
+    \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|}
     \hline
@@ -186,7 +190,39 @@ project aims to gain insights into the characteristics and behavior of graph net
 
     Mathematically the Eigen Vector Centrality is calculated as below:
 
-    \includegraphics[width=0.9\textwidth,center]{Multiplication}
+    \begin{equation*}
+    \begin{split}
+        A \times V & = \begin{bmatrix}
+    - & 1 & 1 & 1 & 0 \\
+    1 & - & 1 & 1 & 0 \\
+    1 & 1 & - & 0 & 0 \\
+    1 & 1 & 0 & - & 1 \\
+    0 & 0 & 0 & 1 & - \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+    3 \\
+    3 \\
+    2 \\
+    3 \\
+    1 \\
+    \end{bmatrix} \\ 
+    & = \begin{bmatrix}
+    0\times3 + 1\times3 + 1\times2 + 1\times3 + 0\times1 \\
+    1\times3 + 0\times3 + 1\times2 + 1\times3 + 0\times1 \\
+    1\times3 + 1\times3 + 0\times2 + 0\times3 + 0\times1 \\
+    1\times3 + 1\times3 + 0\times2 + 0\times3 + 1\times1 \\
+    0\times3 + 0\times3 + 0\times2 + 1\times3 + 0\times1 \\
+    \end{bmatrix} \\
+    \Rightarrow A \times V & =
+    \begin{bmatrix}
+    8 \\
+    8 \\
+    6 \\
+    7 \\
+    3 \\
+    \end{bmatrix}
+    \end{split} 
+    \end{equation*}
 
     The resultant 1-D vector in the above equation gives the Eigen Vector Centrality (EVC) score for each of the nodes in the graph.
 
@@ -201,18 +237,165 @@ project aims to gain insights into the characteristics and behavior of graph net
     Multiplying the resultant vector again with the adjacency matrix of the graph helps the EVC score spread out in the graph to get a more globally prominent EVC score vs a localized EVC score for each node in the graph. After the first iteration of multiplication, each node’s EVC score is a function of only its direct (first degree) neighbours, thus is a localized score which might not be accurate at a global level in the graph.
 
     Thus, the following observations can be made:
-    
-    (I)     After the first iteration of multiplication, each node gets its EVC score from its direct(first degree) neighbours.
-    
-    (II)	In the second iteration, when we multiply the resultant vector again with the adjacency matrix, each node again gets its EVC score from its direct neighbours but the difference in the second iteration is that this time, the scores of the direct neighbours have already been impacted by their own direct(1st degree) neighbours previously(from the first iteration of multiplication) which eventually helps the EVC score of any node to be a function of its 2nd degree neighbouring nodes as well.
-    
-    (III)	In subsequent iterations of multiplication, the EVC score of graph nodes keeps getting updated by getting impacted by EVC scores from neighbouring nodes of farther degrees (3rd, 4th and so on).
 
+    \begin{enumerate}
+    \item After the first iteration of multiplication, each node gets its EVC score from its direct(first degree) neighbours.
+    
+    \item In the second iteration, when we multiply the resultant vector again with the adjacency matrix, each node again gets its EVC score from its direct neighbours but the difference in the second iteration is that this time, the scores of the direct neighbours have already been impacted by their own direct(1st degree) neighbours previously(from the first iteration of multiplication) which eventually helps the EVC score of any node to be a function of its 2nd degree neighbouring nodes as well.
+    
+    \item In subsequent iterations of multiplication, the EVC score of graph nodes keeps getting updated by getting impacted by EVC scores from neighbouring nodes of farther degrees (3rd, 4th and so on).
+    
+    \end{enumerate}
     Repeated multiplication makes the EVC score of every node eventually be a function of or dependent on several degrees of its neighbouring nodes, thereby providing a globally accurate EVC score for each node. Usually, the process of multiplying the EVC vector with the adjacency matrix is repeated until the EVC values for nodes in the graph reach an equilibrium or stop showing the appreciable change.
 
     One sample application of EVC is the calculation of Page Rank or Page Rank algorithm used by Google and many other companies to rank web pages on the internet by relevance. Page Rank is a direct variant of EVC. Web pages on the World Wide Web have links that point to/from other web pages. You can think of each web page as a node in the graph and each outgoing/incoming link as a directed edge leading to/from another web page on the web, thereby making up the whole World Wide Web graph. The graph of web pages in the world wide web undergoes several iterations of EVS calculation so as to calculate globally accurate relevance rankings of each web page. The web pages with high EVC scores can then be targeted for marketing and other commercial purposes. \cite{Bhasin22}
 
   \end{flushleft}
+    \section{Clustering}
+    \begin{flushleft}
+        Graph clustering, also known as community detection, is the process of partitioning a graph into groups or clusters, where nodes within the same cluster are more closely connected to each other than to nodes in other clusters. The goal of graph clustering is to uncover meaningful structures or communities within a graph, allowing us to better understand the relationships and organization of the nodes. Clustering algorithms aim to maximize intra-cluster connectivity while minimizing inter-cluster connectivity, resulting in groups of nodes that are densely connected internally and sparsely connected externally.
+        
+        
+        \subsection{Some popular methods of graph clustering}
+        Several algorithms exist for graph clustering, each with its own approach and assumptions.
+        \subsubsection{K-Means Graph Clustering Method}
+        \begin{flushleft}
+            This method partitions the graph into clusters that appear with a k-shape. It uses k-means to compute the centroids and their vector quantities. The steps involved in constructing the K-means clustering method include: selecting K to represent the original centroids, assigning points to the nearest centroids from the K-cluster, and conducting a re-evaluation of the centroids to ensure they do not change. One advantage of this method is that it can handle large data sets.
+
+            \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\textwidth]{k-means_based.png}
+            \end{figure}
+        \end{flushleft}
+
+        \subsubsection{Spectral clustering}
+        \begin{flushleft}
+            This approach leverages the spectral properties of the graph to perform clustering. It involves transforming the graph into a matrix representation and using eigenvalue decomposition or other spectral techniques to extract clusters. Spectral clustering can handle graphs with irregular structures and is particularly effective for identifying clusters with non-convex shapes.
+            \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\textwidth]{spectral_based.png}
+            \end{figure}
+        \end{flushleft}
+
+        \subsubsection{Hierarchical clustering}
+        This method constructs a hierarchy of clusters, organizing nodes into nested partitions. It starts with individual nodes as separate clusters and progressively merges or splits clusters based on similarity measures until a desired level of granularity is reached. Agglomerative and divisive algorithms are commonly used for hierarchical clustering.
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{Heirarchy_based.png}
+        \end{figure}
+
+        \subsubsection{Density-based methods}
+        \begin{flushleft}
+             These algorithms identify clusters based on the density of nodes in the graph. They group together nodes that have a sufficient number of nearby neighbors while considering regions with lower density as boundaries between clusters. Density-based algorithms include DBSCAN (Density-Based Spatial Clustering of Applications with Noise) and OPTICS (Ordering Points To Identify the Clustering Structure).
+            \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\textwidth]{density_based.png}
+            \end{figure}
+        \end{flushleft}
+
+        \subsubsection*{}
+        \begin{flushleft}
+        The choice of clustering algorithm depends on various factors, such as the nature of the graph, the size of the graph, the desired level of granularity, and the specific goals of the analysis. Additionally, it is important to consider the scalability and computational complexity of the algorithm, as some methods may be more suitable for large-scale graphs. Once the graph clustering algorithm has been applied, the resulting clusters can be analyzed to gain insights into the structure and organization of the graph. Cluster evaluation measures, such as modularity, silhouette coefficient, or normalized mutual information, can be used to assess the quality of the clustering results.
+        \end{flushleft} 
+
+        \subsection{Connection between Clustering and Eigenvalues}
+
+        \subsubsection{Spectral Radius}
+        \begin{flushleft}
+        One important eigenvalue associated with the adjacency matrix is the spectral radius, which is the largest eigenvalue of the matrix.
+        
+        The spectral radius provides information about the expansion properties of the graph. If the spectral radius is small, it suggests that the graph has a well-connected structure with tight clusters. On the other hand, a large spectral radius indicates a more dispersed and less clustered graph.
+        \end{flushleft}
+
+        \subsubsection{Algebraic Connectivity}
+        \begin{flushleft}
+        Another relevant eigenvalue is the second smallest eigenvalue, also known as the algebraic connectivity.
+            
+        The algebraic connectivity measures the connectivity and robustness of the graph. Larger algebraic connectivity implies that the graph has more connections between its nodes, indicating a higher likelihood of clustering.
+        \end{flushleft}
+        \subsubsection*{}
+        \begin{flushleft}
+        Additionally, the eigenvalues of the adjacency matrix can be used to identify the number of clusters in a graph. This is achieved by examining the gaps between consecutive eigenvalues. Large gaps suggest the presence of distinct clusters, while small gaps indicate a more homogeneous graph without well-defined clusters.
+
+        Furthermore, eigenvectors associated with the eigenvalues can provide information about the clustering structure within the graph. The eigenvectors are vectors that correspond to the eigenvalues and represent the distribution of nodes within the graph. By examining the components of the eigenvectors, it is possible to identify nodes that belong to the same cluster or community.
+        \end{flushleft}
+
+        \subsection{Clustering with Linear Algebra}
+        \begin{flushleft}
+        \subsubsection{Creating a Dataset}
+        \begin{flushleft}
+        Our data consists of 200 2-vectors simulated by the \texttt{make\_blobs} function in scikit-learn.
+
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{data_create.png}
+        \end{figure}
+        Plotting them, we see we see our data spanning following 2D-space.
+        \includegraphics[width=0.5\textwidth,center]{data_rep.png}
+        \end{flushleft}
+        \subsubsection{Clustering Analysis}
+        \begin{flushleft}
+        Let's analyze the data using a clustering method. We start by specifying a cluster assignment vector $c$, which informs us about which vector belongs to which cluster. 
+
+        For this example, we arbitrarily initiate the cluster assignments as $c = [1,2,3,1,2,3,1,2,3]$, indicating that cluster 1 contains vectors $v_1$, $v_4$, $v_7$, cluster 2 contains vectors $v_2$, $v_5$, $v_8$, and cluster 3 contains vectors $v_3$, $v_6$, $v_9$.
+        \end{flushleft}
+        \begin{enumerate}
+        \item\textbf{Centroid Calculation}
+        \begin{flushleft}
+        To calculate the similarity of the data points to each other, we use a group representative called the centroid. The centroid for each cluster is calculated as follows:
+
+        \[
+        \text{{centroid}}_j = \frac{1}{{|G_j|}} \sum_{i \in G_j} x_i
+        \]
+
+        where $G_j$ represents the elements in group $j$, and $x_i$ denotes the vectors in the dataset.
+        \end{flushleft}
+
+        \item\textbf{Clustering Quality}
+        \begin{flushleft}
+            We can assess the quality of the current clustering assignment by calculating the mean square distance from the vectors to their associated centroids. This is done using the following equation:
+
+            \[
+            \mathbf{z}_1 = \frac{1}{|G_1|} \sum_{i \in G_1} \mathbf{x}_i
+            \]
+
+            Now we have every ingredient needed to calculate the quality of the current clustering assignment. For this, we calculate the mean square distance from the vectors to their associated representatives with the following equation:
+
+            \[
+            \text{Quality} = \frac{1}{N} \sum_{i=1}^{N} \|\mathbf{x}_i - \mathbf{z}_{c_i}\|^2
+            \]
+
+            where $N$ is the total number of vectors, $x_i$ represents the vectors, and $z_{c_i}$ denotes the centroid corresponding to the cluster assignment $c_i$.
+
+            \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\textwidth]{root_mean_calc.png}
+            \end{figure}
+           
+        \end{flushleft}
+        \end{enumerate} 
+
+        \subsection{Visual Application}
+        \begin{flushleft}
+                With the initial dataset we have a high loss (mean-squared error):
+                \includegraphics[width=0.5\textwidth,center]{example1.png}
+            \begin{enumerate}
+                \item In Step 1 we assign the data points to the cluster with the nearest centroid:
+                \includegraphics[width=0.5\textwidth,center]{images/example2.png}
+                
+                \item In Step 2 we calculate the centroids again with the assigned data points:
+                \includegraphics[width=0.5\textwidth,center]{example3.png}
+
+                \item Our final clustering solution then looks like this:
+                \includegraphics[width=0.5\textwidth,center]{example5.png}
+
+            \end{enumerate}
+                In this example, linear algebra techniques were used to perform clustering analysis. The centroids obtained from the clustering process can be used as representatives of the clusters, providing valuable insights into the dataset.
+            
+        \end{flushleft}
+        \end{flushleft}
+    \end{flushleft}
+  
     \section{Connectivity}
     We will analyse the connectivity of a graph using its adjacency matrix and its eigenvalues.
 
@@ -250,6 +433,88 @@ project aims to gain insights into the characteristics and behavior of graph net
       Similarly, the total number of self loops of length k is given by
       $$\lambda_1^k + \lambda_2^k + \lambda_3^k + ... + \lambda_n^k$$
 
+
+      Since the number of paths of length $k$ between two vertices $V_i$ and $V_j$ is given by $(A(G)^k)_{i,j}$, for a given $(i,j)$ \\ we precalculate $(A(G)^k)_{i,j} \quad \forall k \in \{1,2,...,n\}$ and store them in the matrix
+    \begin{equation*}
+      Y = 
+    \begin{bmatrix}
+    (A(G))_{i,j} \\
+    (A(G)^2)_{i,j} \\
+    (A(G)^2)_{i,j} \\
+    (A(G)^3)_{i,j} \\
+    . \\
+    . \\
+    . \\
+    (A(G)^{n})_{i,j} \\
+    \end{bmatrix}
+    \end{equation*}
+
+    Now, after calculating the eigenvalues of the adjacency matrix $A(G)$, we construct the followng matrix
+ \begin{equation*}
+      A = 
+    \begin{bmatrix}
+      \lambda_1 & \lambda_2 & \lambda_3 & . & . & . & \lambda_n\\
+      \lambda^2_1 & \lambda^2_2 & \lambda^2_3 & . & . & . & \lambda^2_n\\
+      \lambda^3_1 & \lambda^3_2 & \lambda^3_3 & . & . & . & \lambda^3_n\\
+      . & . & . & . & . & . & . \\
+      . & . & . & . & . & . & . \\
+      . & . & . & . & . & . & . \\
+      \lambda^n_1 & \lambda^n_2 & \lambda^n_3 & . & . & . & \lambda^n_n\\
+    \end{bmatrix}
+    \end{equation*}
+
+    To solve for the values of $c_i$, we solve the system of linear equations
+      $$A*C=Y$$
+      After we get the resultant $C$ vector, we can compute the number of paths of length $k \quad \forall k \ge 1$ simply be performing the dot product
+      \begin{equation*}
+        \begin{bmatrix}
+        c_1 \\
+        c_2 \\
+        c_3 \\
+        . \\
+        . \\
+        . \\
+        c_n \\
+        \end{bmatrix}
+        .
+        \begin{bmatrix}
+        \lambda_1^k \\
+        \lambda_2^k \\
+        \lambda_3^k \\
+        . \\
+        . \\
+        . \\
+        \lambda_n^k \\
+        \end{bmatrix}
+      \end{equation*}
+
+    Since we only have to precompute the $c_i$ values by solving linear equation in $n$ variables, we can find number of paths of length k between two vertices for any arbitrarily large k in a fraction of the time required by regular matrix multiplication. 
+
+    \begin{figure}
+      \centering
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+    \includegraphics[width=1\textwidth]{15nodesgraph}
+      \end{subfigure}
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+    \includegraphics[width=1\textwidth]{15nodesoutput}
+      \end{subfigure}
+    \caption{Comparison in speed for a graph with 15 nodes}
+    \end{figure}
+
+    \begin{figure}
+      \centering
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+    \includegraphics[width=1\textwidth]{42nodesgraph}
+      \end{subfigure}
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+    \includegraphics[width=1\textwidth]{42nodesoutput}
+      \end{subfigure}
+    \caption{Comparison in speed for a graph with 42 nodes}
+    \end{figure}
       The number of paths of given length between any two vertices is a very useful metric to have
       \begin{itemize}
         \item Network Analysis: The number of paths between any two access points in a network informs us of its reliability. We can figure out the number of alternate paths the network can take, and how to distribute the packets between all the paths in order to optimally transmit data.
@@ -258,6 +523,7 @@ project aims to gain insights into the characteristics and behavior of graph net
 
         \item Disease Spread: While modelling the spread of a disease, individuals and locations act as vertices in the graph, and the number of paths quantify how likely it is that the disease spread to the other end of that path. This informs us regarding control strategies and which locations require quarantine measures the most.
       \end{itemize}
+
     \end{flushleft} 
 
     \begin{thebibliography}{9}
@@ -269,13 +535,18 @@ project aims to gain insights into the characteristics and behavior of graph net
     Aditya Bhaskara, CS Utah (2016). Eigenvalues of $A_G$ and the Laplacion https://users.cs.utah.edu/~bhaskara/courses/x968/notes/lec5.pdf
 
     \bibitem{mitpaths}
-    Derek Chen, Advay Goel (2021). Spectral Graph Theory https://math.mit.edu/research/highschool/primes/materials/2021/December/Chen-Goel.pdf
+    Derek Chen, Advay Goel (2021). Spectral Graph Theory https://math.mit.edu/research/highschool/primes/materials/2021/\\December/Chen-Goel.pdf
 
     \bibitem{Bhasin22}
     Bhasin, J. (2022, March 30). Graph Analytics — Introduction and Concepts of Centrality. Medium. https://towardsdatascience.com/graph-analytics-introduction-and-concepts-of-centrality-8f5543b55de3
 
     \bibitem{Disney22}
     Disney, A. (2022, October 27). Social network analysis: Understanding centrality measures. Cambridge Intelligence. https://cambridge-intelligence.com/keylines-faqs-social-network-analysis/
+
+    \bibitem{Tuzsus22}
+    Tuzsus, D. (2022, May 14). Introduction to Applied Linear Algebra: K-Means Clustering. Medium. https://medium.com/mlearning-ai/introduction-to-applied-linear-algebra-k-means-clustering-c6885cad0f7f
+    \bibitem{Wong23}
+    Wong, K. J. (2023, May 27). 6 Types of Clustering Methods — An Overview - Towards Data Science. Medium. https://towardsdatascience.com/6-types-of-clustering-methods-an-overview-7522dba026ca
 
     \end{thebibliography}
 \end{document}
