@@ -31,10 +31,14 @@
     \end{titlepage}
 
     \section{Objective}
+    \begin{flushleft}
     The adjacency matrix provides a concise representation of the connections between nodes in a graph, while eigenvalues reveal important properties about
     the graph’s structure. Through analysis and computation of eigenvalues, this
     project aims to gain insights into the characteristics and behavior of graph networks, such as centrality measures, connectivity, and clustering.
 
+      In a recent paper by Miller J. \cite{Jason}, methods to calculate the number of paths of length $k$ between any two vertices of a graph have been explored in great depth. These methods include calculating the eigenvalues of the graph's adjacency matrix and using them to formulate the number of paths. In this project, we aim to implement these methods and analyze them by comparing them against the usual method of matrix multiplication.
+
+    \end{flushleft}
     \section{Introduction}
 
       \subsection{Eigenvalue and Eigenvector}
@@ -274,22 +278,6 @@
             \begin{figure}[h]
             \centering
             \includegraphics[width=0.5\textwidth]{spectral_based.png}
-            \end{figure}
-        \end{flushleft}
-
-        \subsubsection{Hierarchical clustering}
-        This method constructs a hierarchy of clusters, organizing nodes into nested partitions. It starts with individual nodes as separate clusters and progressively merges or splits clusters based on similarity measures until a desired level of granularity is reached. Agglomerative and divisive algorithms are commonly used for hierarchical clustering.
-        \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.5\textwidth]{Heirarchy_based.png}
-        \end{figure}
-
-        \subsubsection{Density-based methods}
-        \begin{flushleft}
-             These algorithms identify clusters based on the density of nodes in the graph. They group together nodes that have a sufficient number of nearby neighbors while considering regions with lower density as boundaries between clusters. Density-based algorithms include DBSCAN (Density-Based Spatial Clustering of Applications with Noise) and OPTICS (Ordering Points To Identify the Clustering Structure).
-            \begin{figure}[h]
-            \centering
-            \includegraphics[width=0.5\textwidth]{density_based.png}
             \end{figure}
         \end{flushleft}
 
@@ -547,6 +535,9 @@
     Tuzsus, D. (2022, May 14). Introduction to Applied Linear Algebra: K-Means Clustering. Medium. https://medium.com/mlearning-ai/introduction-to-applied-linear-algebra-k-means-clustering-c6885cad0f7f
     \bibitem{Wong23}
     Wong, K. J. (2023, May 27). 6 Types of Clustering Methods — An Overview - Towards Data Science. Medium. https://towardsdatascience.com/6-types-of-clustering-methods-an-overview-7522dba026ca
+
+    \bibitem{Jason}
+    Miller, J. (2020, June 8). An Introduction to Spectral Graph Theory https://sites.math.washington.edu/\~morrow/336\_20/papers20/jason.pdf
 
     \end{thebibliography}
 \end{document}
