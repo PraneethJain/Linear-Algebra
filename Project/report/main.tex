@@ -31,14 +31,15 @@
     \end{titlepage}
 
     \section{Objective}
-    \begin{flushleft}
+    % \begin{flushleft}
     The adjacency matrix provides a concise representation of the connections between nodes in a graph, while eigenvalues reveal important properties about
     the graph’s structure. Through analysis and computation of eigenvalues, this
     project aims to gain insights into the characteristics and behavior of graph networks, such as centrality measures, connectivity, and clustering.
 
       In a recent paper by Miller J. \cite{Jason}, methods to calculate the number of paths of length $k$ between any two vertices of a graph have been explored in great depth. These methods include calculating the eigenvalues of the graph's adjacency matrix and using them to formulate the number of paths. In this project, we aim to implement these methods and analyze them by comparing them against the usual method of matrix multiplication.
 
-    \end{flushleft}
+      In the paper on Graph Attention Networks published at ICLR 2018 \cite{GraphAttention}, graph attention networks (GATs), novel neural network architectures that operate on graph-structured data are discussed, leveraging masked self-attentional layers to address the shortcomings of prior methods based on graph convolutions or their approximations. They addressed several key challenges of spectral-based graph neural networks simultaneously, and make their model readily applicable to inductive as well as transductive problems. The graph attentional layer utilized throughout these networks is computationally efficient, allows for (implicitly) assigning different importances to different nodes within a neighborhood while dealing with different sized neighborhoods, and does not depend on knowing the entire graph structure upfront—thus addressing many of the theoretical issues with previous spectral-based approaches. Their models have successfully achieved or matched state-of-the-art performance across four well-established node classification benchmarks, both transductive and inductive. One potential improvement to graph attention networks is be able to handle larger batch sizes.
+    % \end{flushleft}
     \section{Introduction}
 
       \subsection{Eigenvalue and Eigenvector}
@@ -98,7 +99,6 @@
     1 & 1 & - & 0 & 0 \\
     1 & 1 & 0 & - & 1 \\
     0 & 0 & 0 & 1 & - \\
-
     \end{bmatrix}
     \end{equation*}
     
@@ -483,5 +483,7 @@
     \bibitem{Jason}
     Miller, J. (2020, June 8). An Introduction to Spectral Graph Theory https://sites.math.washington.edu/\~morrow/336\_20/papers20/jason.pdf
 
+  \bibitem{GraphAttention}
+Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., \& Bengio, Y. (2018). Graph Attention Networks. arXiv (Cornell University). https://doi.org/10.17863/cam.48429
     \end{thebibliography}
 \end{document}
